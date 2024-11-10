@@ -1,0 +1,62 @@
+{% extends 'adminhome/dash.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card" style="width:1200px;color:black;">
+        <div class="card-body">
+            <h4 class="card-title">STUDENTS</h4>
+            <p class="card-description">
+                <code></code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+
+                          <th>SI.NO</th>
+                          <th>Name</th>
+                          <th>Student id</th>
+                          <th>Gender</th>
+                          <th>Date of birth</th>
+                          <th>Address</th>
+                          <th>Phone number</th>
+                          <th>Email</th>
+                          <th>Enrollment Date</th>
+                          <th>status</th>
+                          <th>status</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in data %}
+                    <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{i.first_name}}&nbsp{{i.last_name}}</td>
+                            <td>{{i.student_id}}</td>
+                            <td>{{i.gender}}</td>
+                            <td>{{i.date_of_birth}}</td>
+                            <td>{{i.address}}</td>
+                            <td>{{i.phone}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.enrollment_date}}</td>
+                            <td><a href="{% url 'studentupdate' i.id %}" ><button class="btn btn-info" type="submit">Update</button></a></td>
+                            <td><a href="{% url 'studentdelete' i.id %}"><button class="btn btn-danger" type="submit">Delete</button></a></td>
+
+
+
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

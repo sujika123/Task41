@@ -1,0 +1,86 @@
+{% extends 'adminhome/dash.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card" style="width:1200px;color:black;">
+        <div class="card-body">
+            <h4 class="card-title">Enrollment History for {{ student.first_name }} {{ student.last_name }}</h4>
+            <p class="card-description">
+                <code></code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+
+
+                          <th>Class</th>
+                          <th>Subjects</th>
+                          <th>Enrollment Date</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for enrollment in enrollments %}
+                    <tr>
+
+                            <td>{{ enrollment.class_assigned.name }} - {{ enrollment.class_assigned.section }}</td>
+                            <td>
+                                {% for subject in enrollment.subjects.all %}
+                                {{ subject.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ enrollment.student.enrollment_date }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+                 <a href="#">Back to Student List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--<h3>Enrollment History for {{ student.first_name }} {{ student.last_name }}</h3>-->
+
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>Class</th>-->
+<!--        <th>Subjects</th>-->
+<!--        <th>Enrollment Date</th>-->
+<!--    </tr>-->
+<!--    {% for enrollment in enrollments %}-->
+<!--    <tr>-->
+<!--        <td>{{ enrollment.class_assigned.name }} - {{ enrollment.class_assigned.section }}</td>-->
+<!--        <td>-->
+<!--            {% for subject in enrollment.subjects.all %}-->
+<!--                {{ subject.name }}{% if not forloop.last %}, {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </td>-->
+<!--        <td>{{ enrollment.student.enrollment_date }}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+
+<!--<a href="#">Back to Student List</a>-->
+
+
+{% endblock %}
